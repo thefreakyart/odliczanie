@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Odliczanie z grafikami</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 40px;
+    }
+
+    .side-images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 150px;
+    }
+
+    .side-images img, .bottom-images img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-content {
+      flex: 1;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    #countdown {
+      font-size: 1.8rem;
+      background-color: #ffffff;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .bottom-images {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .side-images {
+        flex-direction: row;
+        width: auto;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .bottom-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="side-images">
+      <img src="ścieżka-do-zdjęcia3.jpg" alt="Zdjęcie lewe 1">
+      <img src="ścieżka-do-zdjęcia3.jpg" alt="Zdjęcie lewe 2">
+    </div>
+
+    <div class="main-content">
+      <h1>Data: 23.04.2025 10:00</h1>
+      <div id="countdown">Odliczanie...</div>
+    </div>
+
+    <div class="side-images">
+      <img src="ścieżka-do-zdjęcia3.jpg" alt="Zdjęcie prawe 1">
+      <img src="ścieżka-do-zdjęcia4.jpg" alt="Zdjęcie prawe 2">
+    </div>
+  </div>
+
+  <div class="bottom-images">
+    <img src="ścieżka-do-zdjęcia5.jpg" alt="Zdjęcie dolne 1">
+    <img src="ścieżka-do-zdjęcia6.jpg" alt="Zdjęcie dolne 2">
+  </div>
+
+  <script>
+    const countdownElement = document.getElementById("countdown");
+    const targetDate = new Date("2025-04-23T10:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        countdownElement.textContent = "Już nadszedł ten dzień!";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      countdownElement.textContent =
+        `${days} dni, ${hours} godzin, ${minutes} minut, ${seconds} sekund`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
