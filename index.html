@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Odliczanie z grafikami</title>
+  <title>Odliczanie z chodzącym kotem</title>
   <style>
     body {
       margin: 0;
@@ -21,7 +21,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      height: 80vh;
+      height: auto;
       width: 100%;
       max-width: 1200px;
       margin-top: 40px;
@@ -34,7 +34,8 @@
       width: 150px;
     }
 
-    .side-images img, .bottom-images img {
+    .side-images img,
+    .bottom-images img {
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -57,6 +58,31 @@
       padding: 20px 30px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .cat-walk {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+      margin-top: 30px;
+    }
+
+    .cat {
+      position: absolute;
+      bottom: 0;
+      left: -200px;
+      width: 100px;
+      animation: walk 10s linear infinite;
+    }
+
+    @keyframes walk {
+      0% {
+        left: -200px;
+      }
+      100% {
+        left: 100%;
+      }
     }
 
     .bottom-images {
@@ -93,13 +119,18 @@
 
   <div class="container">
     <div class="side-images">
-      <img src="ścieżka-do-zdjęcia3.jpg" alt="Zdjęcie lewe 1">
-      <img src="ścieżka-do-zdjęcia3.jpg" alt="Zdjęcie lewe 2">
+      <img src="ścieżka-do-zdjęcia1.jpg" alt="Zdjęcie lewe 1">
+      <img src="ścieżka-do-zdjęcia2.jpg" alt="Zdjęcie lewe 2">
     </div>
 
     <div class="main-content">
       <h1>Odbiór mieszkania: 23.04.2025 10:00</h1>
       <div id="countdown">Odliczanie...</div>
+
+      <!-- KOT TUŻ POD ODLICZANIEM -->
+      <div class="cat-walk">
+        <img class="cat" src="https://www.gify.net/data/media/209/kot-i-kicia-ruchomy-obrazek-0072.gif" alt="Chodzący kot">
+      </div>
     </div>
 
     <div class="side-images">
@@ -139,5 +170,6 @@
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
   </script>
+
 </body>
 </html>
